@@ -2,7 +2,7 @@ Package.describe({
   name:     'horka:swipebox',
   summary:  'Swipebox image viewer plugin for Meteor.',
   version:  '1.0.0',
-  git:      'https://github.com/horka/swipebox-meteor'
+  git:      'https://github.com/horka/horka-swipebox'
 });
 
 Package.onUse(function(api) {
