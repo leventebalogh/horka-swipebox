@@ -5,6 +5,8 @@ Swipebox image viewer plugin for Meteor.
 (Swipebox is a responsive image viewer lightbox, that also works perfectly on mobile devices.) 
 This package is using the original [swipebox plugin](https://github.com/brutaldesign/swipebox).
 
+[Demo](http://brutaldesign.github.io/swipebox/)
+
 #Install
 
 Installing is really straightforward, just add it to your meteor app, and you can use it right away.
