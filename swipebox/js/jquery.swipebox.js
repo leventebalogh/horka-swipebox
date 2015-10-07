@@ -1,4 +1,4 @@
-/*! Swipebox v1.3.0.2 | Constantin Saguin csag.co | MIT License | github.com/brutaldesign/swipebox */
+/*! Swipebox v1.4.1 | Constantin Saguin csag.co | MIT License | github.com/brutaldesign/swipebox */
 
 ;( function ( window, document, $, undefined ) {
 
@@ -18,10 +18,12 @@
 				beforeOpen: null,
 				afterOpen: null,
 				afterClose: null,
+				nextSlide: null,
+				prevSlide: null,
 				loopAtEnd: false,
 				autoplayVideos: false,
 				queryStringData: {},
-                toggleClassOnLoad: ''
+				toggleClassOnLoad: ''
 			},
 
 			plugin = this,
@@ -743,8 +745,10 @@
 				a.href = decodeURIComponent( uri );
 
 				// QueryString to Object
-				qs = JSON.parse( '{"' + a.search.toLowerCase().replace('?','').replace(/&/g,'","').replace(/=/g,'":"') + '"}' );
-
+				if ( a.search ) {
+					qs = JSON.parse( '{"' + a.search.toLowerCase().replace('?','').replace(/&/g,'","').replace(/=/g,'":"') + '"}' );
+				}
+				
 				// Extend with custom data
 				if ( $.isPlainObject( customData ) ) {
 					qs = $.extend( qs, customData, plugin.settings.queryStringData ); // The dev has always the final word
@@ -838,6 +842,9 @@
 					index++;
 					$this.setSlide( index );
 					$this.preloadMedia( index+1 );
+					if ( plugin.settings.nextSlide ) {
+						plugin.settings.nextSlide();
+					}
 				} else {
 
 					if ( plugin.settings.loopAtEnd === true ) {
@@ -847,6 +854,9 @@
 						$this.preloadMedia( index );
 						$this.setSlide( index );
 						$this.preloadMedia( index + 1 );
+						if ( plugin.settings.nextSlide ) {
+							plugin.settings.nextSlide();
+						}
 					} else {
 						$( '#swipebox-overlay' ).addClass( 'rightSpring' );
 						setTimeout( function() {
@@ -868,12 +878,23 @@
 					index--;
 					this.setSlide( index );
 					this.preloadMedia( index-1 );
+					if ( plugin.settings.prevSlide ) {
+						plugin.settings.prevSlide();
+					}
 				} else {
 					$( '#swipebox-overlay' ).addClass( 'leftSpring' );
 					setTimeout( function() {
 						$( '#swipebox-overlay' ).removeClass( 'leftSpring' );
 					}, 500 );
 				}
+			},
+
+			nextSlide : function () {
+				// Callback for next slide
+			},
+
+			prevSlide : function () {
+				// Callback for prev slide
 			},
 
 			/**
