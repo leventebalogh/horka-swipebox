@@ -582,9 +582,7 @@
 					} );
 				}
 
-				$( '#swipebox-close' ).bind( action, function(event) {
-					event.preventDefault();
-					event.stopPropagation();
+				$( '#swipebox-close' ).bind( action, function() {
 					$this.closeSlide();
 				} );
 			},
