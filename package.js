@@ -11,7 +11,7 @@ Package.onUse(function(api) {
   api.addFiles([
   	'horka:swipebox.js',
   	'swipebox/css/swipebox.min.css',
-  	'swipebox/js/jquery.swipebox.js',
+  	'swipebox/js/jquery.swipebox.min.js',
     'swipebox/img/loader.gif',
     'swipebox/img/icons.png',
     'swipebox/img/icons.svg'
