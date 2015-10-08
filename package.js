@@ -12,10 +12,20 @@ Package.onUse(function(api) {
   	'horka:swipebox.js',
   	'swipebox/css/swipebox.min.css',
   	'swipebox/js/jquery.swipebox.min.js',
-    'swipebox/img/loader.gif',
-    'swipebox/img/icons.png',
-    'swipebox/img/icons.svg'
   ], ['client']);
+  if(api.addAssets) { //meteor 1.2
+	  api.addAssets([
+	    'swipebox/img/loader.gif',
+	    'swipebox/img/icons.png',
+	    'swipebox/img/icons.svg'
+	  ], ['client']);
+  } else {
+	  api.addFiles([
+	    'swipebox/img/loader.gif',
+	    'swipebox/img/icons.png',
+	    'swipebox/img/icons.svg'
+	  ], ['client']);
+  }
 });
 
 Package.onTest(function(api) {
